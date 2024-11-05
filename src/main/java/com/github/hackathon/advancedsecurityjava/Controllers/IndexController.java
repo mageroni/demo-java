@@ -37,23 +37,35 @@ public class IndexController {
 
       String query = null;
 
-      if (bookname != null) {
-        // Filter by book name
-        query = "SELECT * FROM Books WHERE name LIKE ?";
-        parameters.add("%" + bookname + "%");
-      } else if (bookauthor != null) {
-        // Filter by book author
-        query = "SELECT * FROM Books WHERE author LIKE ?";
-        parameters.add("%" + bookauthor + "%");
-      } else if (bookread != null) {
-        // Filter by if the book has been read or not
-        Integer read = bookread ? 1 : 0;
-        query = "SELECT * FROM Books WHERE read = ?";
-        parameters.add(read.toString());
-      } else {
-        // All books
-        query = "SELECT * FROM Books";
-      }
+ import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+String query;
+PreparedStatement stmt;
+
+if (bookname != null) {
+    // Filter by book name using a prepared statement
+    query = "SELECT * FROM Books WHERE name LIKE ?";
+    stmt = connection.prepareStatement(query);
+    stmt.setString(1, "%" + bookname + "%");
+} else if (bookauthor != null) {
+    // Filter by book author using a prepared statement  
+    query = "SELECT * FROM Books WHERE author LIKE ?";
+    stmt = connection.prepareStatement(query);
+    stmt.setString(1, "%" + bookauthor + "%");
+} else if (bookread != null) {
+    // Filter by if the book has been read or not using a prepared statement
+    query = "SELECT * FROM Books WHERE read = ?";
+    stmt = connection.prepareStatement(query);
+    stmt.setInt(1, bookread ? 1 : 0);
+} else {
+    // All books
+    query = "SELECT * FROM Books";
+    stmt = connection.prepareStatement(query);
+}
+
+ResultSet rs = stmt.executeQuery();
 
       statement = connection.prepareStatement(query);
       int index = 1;
