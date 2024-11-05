@@ -24,7 +24,22 @@ import org.apache.logging.log4j.Logger;
 public class Application {
 
 	public static String connectionString = "jdbc:sqlite:database.sqlite";
+	//user=admin; password=PA$$W0RD!
+	//{user: myuser, password: mypassword, host: example.com, port: 33060}
+	//azure_sql_password=ASDSAD@#$@T@#@REFESFDS
+	/*
 
+	Generic	http_basic_authentication_header="1231242358134018@#%(#!@*%@#_)"
+	Generic	http_bearer_authentication_header="1231242358134018@#%(#!@*%@#_)"
+	Generic	mongodb_connection_string="1231242358134018@#%(#!@*%@#_)"
+	Generic	mysql_connection_string="1231242358134018@#%(#!@*%@#_)"
+	Generic	openssh_private_key="1231242358134018@#%(#!@*%@#_)"
+	Generic	pgp_private_key="1231242358134018@#%(#!@*%@#_)"
+	Generic	postgres_connection_string="1231242358134018@#%(#!@*%@#_)"
+	Generic	rsa_private_key="1231242358134018@#%(#!@*%@#_)"
+
+
+	*/
 	public static final Logger logger = LogManager.getLogger();
   
 	public static void main(String[] args) {
